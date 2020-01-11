@@ -1,0 +1,20 @@
+- hosts: installer
+  gather_facts: yes
+  become: yes
+  vars:
+    install: true
+  vars_prompt:
+    - name: "
+    ======================== LIST OF OPTIONS TO INSTALL =============================\n
+    1. Install Kafka\n
+
+    ==================================================================================\n
+    "
+
+
+    - name: "whatSoftware"
+      prompt: "Please type the number to map the software you desire"
+      private: no
+      
+  roles:
+    - installer

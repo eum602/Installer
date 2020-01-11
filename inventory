@@ -1,0 +1,8 @@
+[installer]
+127.0.0.1
+
+[all:vars]
+
+
+[installer:vars]
+#abc=true

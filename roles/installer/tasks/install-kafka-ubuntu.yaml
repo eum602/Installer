@@ -1,0 +1,49 @@
+---
+- name: Install kafka
+  debug:
+    msg: "Starting Kafka process installing ... "
+
+- name: previous clearing
+  shell: rm -rf /tmp/kafka && mkdir /tmp/kafka
+  args:
+    warn: false
+
+- name: Downloading Kafka binaries
+  get_url:
+    url: https://www-eu.apache.org/dist/kafka/2.4.0/kafka_2.11-2.4.0.tgz
+    dest: /tmp/kafka
+
+- name: Preparing temporal folder
+  shell: rm -rf /tmp/transit/ && mkdir /tmp/transit #deleting and creating a new
+  args:
+    warn: false
+
+- name: Extract Kafka tarball
+  unarchive:
+      src: "/tmp/kafka/kafka_2.11-2.4.0.tgz"
+      dest: /tmp/transit
+      copy: no
+
+- name: Renaming extracted file
+  shell: mv * kafka
+  args:
+    chdir: /tmp/transit
+
+- name: Deleting old folders
+  shell: rm -rf /usr/local/kafka
+  args:
+    warn: false
+
+- name: moving files to /usr
+  shell: mv /tmp/transit/kafka /usr/local
+
+- name: Add the kafka PATH to global PATH
+  template:
+    src: "kafka.j2"
+    dest: "/etc/profile.d/kafka.sh"
+    force: yes
+
+- name: clearing unnecessary folders
+  shell: rm -rf /tmp/transit && rm -rf /tmp/orion
+  args:
+    warn: false
