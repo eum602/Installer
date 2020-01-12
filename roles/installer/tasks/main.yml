@@ -2,3 +2,4 @@
 - name: Installer
   import_tasks: "install.yaml"
   when: " whatSoftware == '1' "
+  become_user: "{{user}}"

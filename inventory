@@ -5,4 +5,4 @@
 
 
 [installer:vars]
-#abc=true
+user=acc-1

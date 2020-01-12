@@ -1,0 +1,8 @@
+---
+- name: install kafka for {{ ansible_distribution }}
+  import_tasks: "install-kafka-ubuntu.yaml"
+  when: ansible_distribution |lower == 'ubuntu'
+
+- name: set kafka directory for {{ ansible_distribution }}
+  import_tasks: "set-kafka-directory.yaml"
+  when: ansible_distribution |lower == 'ubuntu'

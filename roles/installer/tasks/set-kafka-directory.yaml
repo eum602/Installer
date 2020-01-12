@@ -1,0 +1,10 @@
+---
+- name: Install kafka
+  debug:
+    msg: "Setting Kafka directory ... "
+
+- name: Creating folder for data
+  shell: mkdir -p ~/kafka/data/zookeeper
+
+- name: Set dataDir for zookeeper
+  shell: export ZOOKEEPER_FOLDER=$HOME/kafka/data/zookeeper  && sed -i "s@dataDir=/tmp/zookeeper@dataDir='$ZOOKEEPER_FOLDER'@"  $HOME/kafka/config/zookeeper.properties
