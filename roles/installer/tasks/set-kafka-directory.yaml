@@ -4,7 +4,7 @@
     msg: "Setting Kafka directory ... "
 
 - name: Creating folder for data
-  shell: rm -rf ~/kafka/data/zookeeper && mkdir -p ~/kafka/data/zookeeper
+  shell: rm -rf ~/kafka/data/kafka && mkdir -p ~/kafka/data/kafka
 
-- name: Set dataDir for zookeeper
-  shell: export ZOOKEEPER_FOLDER=$HOME/kafka/data/zookeeper  && sed -i "s@dataDir=/tmp/zookeeper@dataDir=$ZOOKEEPER_FOLDER@"  $HOME/kafka/config/zookeeper.properties
+- name: Set log.dirs for Kafka
+  shell: export KAFKA_FOLDER=$HOME/kafka/data/kafka  && sed -i "s@log.dirs=/tmp/kafka-logs@log.dirs=$KAFKA_FOLDER@"  $HOME/kafka/config/server.properties

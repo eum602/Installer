@@ -1,6 +1,10 @@
 ---
-- name: install kafka for {{ ansible_distribution }}
-  import_tasks: "install-kafka-ubuntu.yaml"
+# - name: install kafka for {{ ansible_distribution }}
+#   import_tasks: "install-kafka-ubuntu.yaml"
+#   when: ansible_distribution |lower == 'ubuntu'
+
+- name: set zookeeper directory for {{ ansible_distribution }}
+  import_tasks: "set-zookeeper-directory.yaml"
   when: ansible_distribution |lower == 'ubuntu'
 
 - name: set kafka directory for {{ ansible_distribution }}
