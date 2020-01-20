@@ -1,4 +1,7 @@
 ---
+- name: install kafka dependencies for {{ ansible_distribution }}
+  import_tasks: "install-kafka-dependencies-ubuntu.yaml"
+
 - name: install kafka for {{ ansible_distribution }}
   import_tasks: "install-kafka-ubuntu.yaml"
   when: ansible_distribution |lower == 'ubuntu'

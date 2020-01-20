@@ -1,0 +1,9 @@
+---
+- name: install the latest version of default jre
+  package:
+    name:
+      - default-jre
+    state: latest
+  become: yes
+  become_user: root
+  become_method: sudo
