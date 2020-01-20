@@ -1,8 +1,11 @@
 [installer]
-127.0.0.1
+127.0.0.1:2222
 
 [all:vars]
 
 
 [installer:vars]
-user=acc-1
+user=vagrant
+home=/home/vagrant/
+
+#acc-1

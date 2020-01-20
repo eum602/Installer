@@ -30,19 +30,20 @@
     chdir: /tmp/transit
 
 - name: Deleting old folders
-  shell: rm -rf {{ lookup('env','HOME') }}/kafka
+  shell: rm -rf {{ home }}/kafka
   args:
     warn: false
 
-- name: moving files to {{ lookup('env','HOME') }}
-  shell: mv /tmp/transit/kafka {{ lookup('env','HOME') }}
+- name: moving files to {{ home }}
+  shell: mv /tmp/transit/kafka {{ home }}
 
 - name: Add the kafka PATH to global PATH
   template:
     src: "kafka.j2"
     dest: "/etc/profile.d/kafka.sh"
     force: yes
-  become: true
+  become: yes
+  become_user: root
   become_method: sudo
 
 - name: clearing unnecessary folders

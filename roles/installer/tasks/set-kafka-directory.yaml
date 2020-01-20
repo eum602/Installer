@@ -1,5 +1,5 @@
 ---
-- name: Install kafka
+- name: Set kafka
   debug:
     msg: "Setting Kafka directory ... "
 
