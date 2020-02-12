@@ -8,3 +8,6 @@
 
 - name: Set log.dirs for Kafka
   shell: export KAFKA_FOLDER=$HOME/kafka/data/kafka  && sed -i "s@log.dirs=/tmp/kafka-logs@log.dirs=$KAFKA_FOLDER@"  $HOME/kafka/config/server.properties
+
+- name: set delete.topic.enable to true
+  shell: echo delete.topic.enable=true >> $HOME/kafka/config/server.properties
