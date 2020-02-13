@@ -1,0 +1,57 @@
+---
+- name: Install protoc
+  debug:
+      msg: "Installing protoc"
+
+- name: previous clearing
+  shell: rm -rf /tmp/protoc && mkdir /tmp/protoc
+  args:
+    warn: false
+
+- name: pull protoc binaries
+  get_url:
+    url: "https://github.com/google/protobuf/releases/download/v{{protoc_release_version}}/protoc-{{protoc_release_version}}-linux-x86_64.zip" #"https://bintray.com/consensys/binaries/download_file?file_path=protoc-{{ protoc_release_version}}.tar.gz"
+    dest: "/tmp/protoc/protoc.tar.gz"
+
+- name: Extract the protoc tarball  
+  unarchive:
+        src: "/tmp/protoc/protoc.tar.gz"
+        dest: /tmp/protoc
+        copy: no
+
+- name: Deleting old folders
+  shell: rm -rf /usr/local/protoc
+  args:
+    warn: false
+  become: yes
+  become_user: root
+
+- name: moving files to /usr
+  shell: mv /tmp/protoc /usr/local
+  become: yes
+  become_user: root
+
+- name: Deleting old installed versions of protoc
+  file:
+       path: /usr/bin/{{ item.dest }}
+       state: absent
+  with_items:
+        - { dest: "protoc" }
+        - { dest: "protoc.bat" }
+  become: yes
+  become_user: root
+
+- name: Symbolic link for protoc
+  file:
+        src: "/usr/local/protoc/bin/{{ item.src }}"
+        dest: "/usr/bin/{{ item.dest }}"
+        state: link
+  with_items:
+        - { src: "protoc", dest: "protoc" }
+  become: yes
+  become_user: root
+
+- name: clearing unnecessary folders
+  shell: rm -rf /tmp/protoc && rm -rf /tmp/protoc
+  args:
+    warn: false

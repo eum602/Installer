@@ -3,3 +3,8 @@
   import_tasks: "install.yaml"
   when: " whatSoftware == '1' "
   become_user: "{{user}}"
+
+- name: Install protoc
+  import_tasks: "install-protoc.yaml"
+  when: " whatSoftware == '2' "
+  become_user: "{{user}}"
