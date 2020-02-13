@@ -1,4 +1,22 @@
 ---
+- name: "Custon protoc version"
+  pause:
+    prompt: "Hello: By default protoc 3.11.3 will be installed\n
+    Do you want to install custom protoc version? (yes/no)"
+  register: isCustomRequired
+
+- name: "protoc_custom_release_version"
+  pause:
+    prompt: "Choose from here available versions: https://mvnrepository.com/artifact/com.google.protobuf/protoc\n
+    Enter the protoc version you want to install. eg 3.11.3"
+  register: protoc_custom_release_version
+  when: isCustomRequired.user_input == 'yes'
+
+- name: Overriding protoc version to install
+  set_fact:
+    protoc_release_version: "{{ protoc_custom_release_version.user_input }}"
+  when: protoc_custom_release_version is not skipped
+
 - name: Install protoc
   debug:
       msg: "Installing protoc"

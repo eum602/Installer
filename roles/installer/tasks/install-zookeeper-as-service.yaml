@@ -1,0 +1,9 @@
+---
+- name: install the latest version of default jre
+  package:
+    name:
+      - zookeeperd
+    state: latest
+  become: yes
+  become_user: root
+  become_method: sudo
