@@ -7,3 +7,4 @@
 [installer:vars]
 user=acc-1
 home=/home/acc-1
+ansible_connection=local

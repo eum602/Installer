@@ -8,3 +8,8 @@
   import_tasks: "install-protoc.yaml"
   when: " whatSoftware == '2' "
   become_user: "{{user}}"
+
+- name: Install laTex
+  import_tasks: "install-latex.yaml"
+  when: " whatSoftware == '3' "
+  become_user: "{{user}}"

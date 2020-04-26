@@ -1,0 +1,5 @@
+---
+# TODO: implement latex installation
+- name: Install latex
+  debug:
+    msg: "To install latex download the iso image from http://ctan.dcc.uchile.cl/systems/texlive/Images/"
