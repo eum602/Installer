@@ -7,8 +7,9 @@
       * sudo mount -o loop texlive.iso /mnt
       * cd /mnt
       * sudo ./install-tl
+      * add the path to ~/.profile with: 'export PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH'
       "
-- name: Install latex
+- name: Install Texstudio
   debug:
     msg: "To install Texstudio:
       * download from https://www.texstudio.org/
