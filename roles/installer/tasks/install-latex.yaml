@@ -2,4 +2,15 @@
 # TODO: implement latex installation
 - name: Install latex
   debug:
-    msg: "To install latex download the iso image from http://ctan.dcc.uchile.cl/systems/texlive/Images/"
+    msg: "To install latex:
+      * download the iso image from http://ctan.dcc.uchile.cl/systems/texlive/Images/
+      * sudo mount -o loop texlive.iso /mnt
+      * cd /mnt
+      * sudo ./install-tl
+      "
+- name: Install latex
+  debug:
+    msg: "To install Texstudio:
+      * download from https://www.texstudio.org/
+      * sudo dpkg -i texstudio-qt4_2.12.22-1_amd64.deb
+      "
