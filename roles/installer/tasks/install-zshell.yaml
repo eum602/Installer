@@ -1,0 +1,21 @@
+---
+- name: Install zshell and themes
+  vars:
+    msg: |
+          ********THEMES**************
+          install paper theme
+          **********UTILITIES***************
+          install tweak tool to set paper
+          Zoom: Install compiz config to set zoom in zoom out
+          sudo apt-get install compizconfig-settings-manager compiz-plugins-extra -y
+          *****CONFIGURE**************
+          shortcuts
+          ctrl -shift + f7 ==> zoom in
+          ctrl -shift + f6 ==> zoom out
+          hide-unhide launcher
+          go to system-setting - appearance ==> behavior ==> turn on the AUTO HIDE LAUNCHER
+                        reduce the launcher side bar size according to the best fit
+          #Terminal
+          Install zshell"
+  debug:
+    msg: "{{ msg.split('\n') }}"

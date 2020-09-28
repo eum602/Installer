@@ -13,3 +13,8 @@
   import_tasks: "install-latex.yaml"
   when: " whatSoftware == '3' "
   become_user: "{{user}}"
+
+- name: Install Zshell
+  import_tasks: "install-zshell.yaml"
+  when: " whatSoftware == '4' "
+  become_user: "{{user}}"
